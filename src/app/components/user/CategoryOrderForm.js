@@ -26,7 +26,7 @@ const CategoryOrderForm = ({ options, onSave }) => {
   }, [options]);
 
   if (!options.length) {
-    return <p>Du har ingen budgettavla.</p>;
+    return <p>Du har ingen budget bricka.</p>;
   }
 
   return (

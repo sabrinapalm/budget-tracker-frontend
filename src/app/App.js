@@ -77,7 +77,7 @@ const App = () => {
       ) : (
         <div className="startpage-form">
           <div>
-            <h1>BudgetTavla</h1>
+            <h1>BudgetBrickan</h1>
             <p>Effektivisera din budget och se alla dina finansiella utgifter på ett bekvämt ställe.</p>
           </div>
           <LoginForm

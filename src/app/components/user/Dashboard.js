@@ -54,7 +54,7 @@ const Dashboard = ({ onLogout, userData }) => {
     <>
       <header className="app-header-wrapper">
         <div>
-          <h1>BudgetTavla</h1>
+          <h1>BudgetBrickan</h1>
           <h2>{greeting}</h2>
         </div>
         <div className="menu">
