@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  ExitToAppOutlined,
-  AccountCircleOutlined,
-  AddCircleOutlineOutlined,
-  TocOutlined,
-  ContrastOutlined,
-} from '@mui/icons-material';
+import { ExitToAppOutlined, AccountCircleOutlined, AddCircleOutlineOutlined, TocOutlined } from '@mui/icons-material';
 import { useGetExpensesQuery } from '../../api/expenseApi';
 import LoadingIndicator from '../general/LoadingIndicator';
 import ErrorDisplay from '../general/ErrorDisplay';
@@ -17,20 +11,13 @@ import { getGreeting } from '../../utils/generalUtils';
 import { groupExpensesByCategory, sortCategories } from '../../utils/financialUtils';
 import SettingsForm from './SettingsForm';
 import CategoryOrderForm from './CategoryOrderForm';
-import { useTheme } from '../../context/ThemeContext';
-import { THEMES } from '../../constants';
 
 const Dashboard = ({ onLogout, userData }) => {
   const { data: expenses = [], error, isLoading } = useGetExpensesQuery(userData?._id);
-  const { setTheme } = useTheme();
 
   const [openDialog, setOpenDialog] = useState(null);
 
   const greeting = getGreeting(userData.firstName);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK));
-  };
 
   const handleOpenDialog = (dialogName) => {
     setOpenDialog(dialogName);
@@ -66,9 +53,6 @@ const Dashboard = ({ onLogout, userData }) => {
           </button>
           <button onClick={() => handleOpenDialog('settings')}>
             <AccountCircleOutlined size="large" />
-          </button>
-          <button onClick={toggleTheme}>
-            <ContrastOutlined />
           </button>
           <button onClick={onLogout}>
             <ExitToAppOutlined size="large" />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRegisterUserMutation } from '../../api/authApi';
-import { passwordCriteria } from '../../utils/generalUtils';
+// import { passwordCriteria } from '../../utils/generalUtils';
 
 const RegistrationForm = ({ onRegisterSuccess }) => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
     confirmPassword: '',
   });
   const [passwordError, setPasswordError] = useState('');
-  const [passwordValidation, setPasswordValidation] = useState(passwordCriteria.map(() => false));
+  // const [passwordValidation, setPasswordValidation] = useState(passwordCriteria.map(() => false));
   const [registerUser, { isLoading, error }] = useRegisterUserMutation();
 
   const handleSubmit = async (e) => {
@@ -47,10 +47,10 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
 
-    if (name === 'password') {
-      const validationResults = passwordCriteria.map((criterion) => criterion.test(value));
-      setPasswordValidation(validationResults);
-    }
+    // if (name === 'password') {
+    //   const validationResults = passwordCriteria.map((criterion) => criterion.test(value));
+    //   setPasswordValidation(validationResults);
+    // }
   };
 
   return (
@@ -109,11 +109,11 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
         </div>
         {passwordError && <div className="description-text">{passwordError}</div>}
 
-        {passwordCriteria.map((criterion, index) => (
+        {/* {passwordCriteria.map((criterion, index) => (
           <div key={index} className={passwordValidation[index] ? 'success' : 'error'}>
             {passwordValidation[index] ? '\u2713' : ''} {criterion.message}
           </div>
-        ))}
+        ))} */}
 
         <button type="submit" disabled={isLoading}>
           Skapa konto

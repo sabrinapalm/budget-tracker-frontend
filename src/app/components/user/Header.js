@@ -22,7 +22,7 @@ const Header = ({ expenses, totalIncome, salaryDay }) => {
         </div>
         <div className="total">
           <h3>Totala utgifter</h3>
-          <h2>-{formatNumber(allExpenses)} SEK</h2>
+          <h2>{formatNumber(allExpenses)} SEK</h2>
         </div>
         <div className="total">
           <h3>Återstående belopp</h3>

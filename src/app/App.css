@@ -74,6 +74,7 @@ h1 {
 .total h2 {
   font-weight: 500;
   color: var(--primary-color);
+  font-size: 1.5rem;
 }
 
 .total h3 {
@@ -499,7 +500,7 @@ button:focus {
 .success {
   display: flex;
   gap: 8px;
-  font-size: 12px;
+  font-size: 0.75rem;
   align-items: center;
   color: var(--primary-color);
 }
@@ -508,9 +509,64 @@ button:focus {
 .error {
   display: flex;
   gap: 8px;
-  font-size: 12px;
+  font-size: 0.75rem;
   align-items: center;
 }
+
+.switch-container {
+  display: flex;
+  gap: 8px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: var(--primary-color);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked+.slider:before {
+  transform: translateX(23px);
+}
+
 
 @media (max-width: 768px) {
 
@@ -530,6 +586,12 @@ button:focus {
 }
 
 @media (max-width: 600px) {
+
+  body,
+  html {
+    font-size: 12px;
+  }
+
   .App {
     gap: 16px;
     padding: 16px;
@@ -548,5 +610,16 @@ button:focus {
     margin: 0px;
     padding: 0px;
     width: 100%;
+  }
+
+  .move-category {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .dialog-content {
+    height: 96%;
+    border-radius: 0px;
   }
 }

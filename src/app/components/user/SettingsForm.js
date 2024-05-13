@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useUpdateUserSettingsMutation } from '../../api/authApi';
 import { selectUserId } from '../../redux/selectors';
+import { useTheme } from '../../context/ThemeContext';
+import { THEMES } from '../../constants';
 
 const SettingsForm = ({ userData, onClose }) => {
   const userId = useSelector(selectUserId);
@@ -9,6 +11,7 @@ const SettingsForm = ({ userData, onClose }) => {
   const [firstName, setFirstName] = useState(userData?.firstName || '');
   const [lastName, setLastName] = useState(userData?.lastName || '');
   const [salaryDay, setSalaryDay] = useState(userData?.salaryDay || 25);
+  const { theme, setTheme } = useTheme();
   const [updateUserSettings, { isLoading: isUpdatingUser }] = useUpdateUserSettingsMutation();
 
   const handleUpdateUserSettings = async (event) => {
@@ -32,6 +35,10 @@ const SettingsForm = ({ userData, onClose }) => {
     } catch (error) {
       console.error('Error updating user settings:', error);
     }
+  };
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK));
   };
 
   const isFormEmpty = !income && !firstName && !lastName && !salaryDay;
@@ -62,6 +69,14 @@ const SettingsForm = ({ userData, onClose }) => {
           onChange={(e) => setSalaryDay(e.target.value)}
         />
       </div>
+      <div className="switch-container">
+        <span>{theme === THEMES.DARK ? 'Dark Mode' : 'Light Mode'}</span>
+        <label className="switch">
+          <input type="checkbox" checked={theme === THEMES.DARK} onChange={toggleTheme} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+
       <button type="submit" disabled={isUpdatingUser || isFormEmpty}>
         {isUpdatingUser ? 'Sparar...' : 'Spara'}
       </button>
