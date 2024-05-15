@@ -18,7 +18,7 @@ import SettingsForm from '../forms/SettingsForm';
 import CategoryOrderForm from '../forms/CategoryOrderForm';
 import SavingsList from '../savings/SavingsList';
 import SavingsForm from '../forms/SavingsForm';
-import { APP_TITLE, CATEGORY_ORDER, DASHBOARD, EXPENSE, SAVINGS, SETTINGS } from '../../constants';
+import { APP_COLORS, APP_TITLE, CATEGORY_ORDER, DASHBOARD, EXPENSE, SAVINGS, SETTINGS } from '../../constants';
 
 const Dashboard = ({ onLogout, userData }) => {
   const [openDialog, setOpenDialog] = useState(null);
@@ -44,11 +44,42 @@ const Dashboard = ({ onLogout, userData }) => {
 
   const groupedExpenses = useMemo(() => groupExpensesByCategory(expenses), [expenses]);
 
+  const changeColor = (color) => {
+    document.documentElement.style.setProperty('--primary-color', color);
+  };
+
   if (isLoading) return <LoadingIndicator />;
   if (error) return <ErrorDisplay errorMessage={error.message} />;
 
   return (
     <>
+      <div className="color-boxes">
+        <div
+          className="color-box"
+          style={{ backgroundColor: APP_COLORS.GREEN }}
+          onClick={() => changeColor(APP_COLORS.GREEN)}
+        ></div>
+        <div
+          className="color-box"
+          style={{ backgroundColor: APP_COLORS.PINK }}
+          onClick={() => changeColor(APP_COLORS.PINK)}
+        ></div>
+        <div
+          className="color-box"
+          style={{ backgroundColor: APP_COLORS.YELLOW }}
+          onClick={() => changeColor(APP_COLORS.YELLOW)}
+        ></div>
+        <div
+          className="color-box"
+          style={{ backgroundColor: APP_COLORS.ORANGE }}
+          onClick={() => changeColor(APP_COLORS.ORANGE)}
+        ></div>
+        <div
+          className="color-box"
+          style={{ backgroundColor: APP_COLORS.BLUE }}
+          onClick={() => changeColor(APP_COLORS.BLUE)}
+        ></div>
+      </div>
       <header className="app-header-wrapper">
         <div>
           <h1>{APP_TITLE}</h1>

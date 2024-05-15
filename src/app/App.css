@@ -65,6 +65,28 @@ h1 {
   font-family: inherit;
 }
 
+.app-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-direction: row;
+}
+
+.color-boxes {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.color-box {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+
 .dashboard {
   display: flex;
   align-items: center;
@@ -656,6 +678,10 @@ input:checked+.slider:before {
   }
 
   .move-category {
+    display: none;
+  }
+
+  .color-boxes {
     display: none;
   }
 }

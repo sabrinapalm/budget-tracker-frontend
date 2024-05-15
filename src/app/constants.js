@@ -114,3 +114,11 @@ export const THEMES = {
 };
 
 export const APP_TITLE = 'BudgetBrickan';
+
+export const APP_COLORS = {
+  GREEN: '#48FFB2',
+  ORANGE: '#FF5733',
+  BLUE: '#3357FF',
+  PINK: '#fd38ac',
+  YELLOW: '#FFD700',
+};
