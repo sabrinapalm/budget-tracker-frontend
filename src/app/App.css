@@ -587,11 +587,6 @@ input:checked+.slider:before {
 
 @media (max-width: 600px) {
 
-  body,
-  html {
-    font-size: 12px;
-  }
-
   .App {
     gap: 16px;
     padding: 16px;
@@ -615,6 +610,17 @@ input:checked+.slider:before {
   .move-category {
     display: none;
   }
+}
+
+@media (max-width: 570px) {
+  .menu button:nth-child(2) {
+    display: none;
+  }
+
+  .menu button:nth-child(3) {
+    display: none;
+  }
+
 }
 
 @media (max-width: 420px) {
