@@ -1,19 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  DeleteOutline,
-  VisibilityOffOutlined,
-  // ShortcutOutlined,
-  ModeEditOutlineOutlined,
-} from '@mui/icons-material';
+import { DeleteOutline, VisibilityOffOutlined, ModeEditOutlineOutlined } from '@mui/icons-material';
 import { useDeleteExpenseMutation, useUpdateExpenseMutation } from '../../api/expenseApi';
-// import { categoryTitles, categoryOptions } from '../../constants';
 import { selectUserId } from '../../redux/selectors';
 import { formatNumber } from '../../utils/financialUtils';
 import FormDialog from '../general/FormDialog';
-import EditExpenseForm from '../expense/EditExpenseForm';
+import EditExpenseForm from '../forms/EditExpenseForm';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
-// import CategoryIcon from './CategoryIcon';
 
 const ExpensesItem = ({ expense }) => {
   const userId = useSelector(selectUserId);
@@ -45,20 +38,6 @@ const ExpensesItem = ({ expense }) => {
     }
   };
 
-  // const toggleDropdown = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const handleSelect = async (newCategory) => {
-  //   const updatedExpense = { ...expense, category: newCategory };
-  //   try {
-  //     await updateExpense({ expenseId: expense._id, ...updatedExpense, userId });
-  //   } catch (error) {
-  //     console.error('Error updating expense:', error);
-  //   }
-  //   setIsDropdownOpen(false);
-  // };
-
   const handleToggleEdit = () => {
     setIsEditFormOpen(true);
   };
@@ -66,10 +45,6 @@ const ExpensesItem = ({ expense }) => {
   const handleCloseEdit = () => {
     setIsEditFormOpen(false);
   };
-
-  // const dropdownStyles = {
-  //   position: 'relative',
-  // };
 
   return (
     <li key={expense._id}>
@@ -102,27 +77,6 @@ const ExpensesItem = ({ expense }) => {
         >
           <VisibilityOffOutlined fontSize="small" />
         </button>
-
-        {/* <div style={dropdownStyles} ref={dropdownRef} className="move-category">
-          <button
-            onClick={toggleDropdown}
-            className="delete"
-            disabled={isDeletingExpense}
-            style={expense.hidden ? { opacity: 0.5 } : {}}
-          >
-            <ShortcutOutlined fontSize="small" />
-          </button>
-          {isDropdownOpen && (
-            <ul className="menu-dropdown">
-              {categoryOptions.map((category) => (
-                <li key={category} onClick={() => handleSelect(category)}>
-                  <CategoryIcon category={category} iconProps={{ fontSize: 'small' }} />
-                  {categoryTitles[category]}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div> */}
 
         <button
           onClick={handleDeleteExpense}

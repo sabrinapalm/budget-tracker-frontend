@@ -1,11 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { EXPENSE_TAG, API_URL } from './apiConstants';
+import { baseApi } from './baseApi';
+import { EXPENSE_TAG } from './constants';
 
-const expenseApi = createApi({
-  reducerPath: 'expenseApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
-  }),
+const expenseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getExpenses: builder.query({
       query: (userId) => `expenses?userId=${userId}`,

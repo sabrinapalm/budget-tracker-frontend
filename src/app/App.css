@@ -41,12 +41,31 @@ menu {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  scrollbar-width: none;
+}
+
+.App {
+  height: 93vh;
+  overflow-y: scroll;
+  /* Add the ability to scroll */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.App {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .App-header {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding-block: 20px;
   border-radius: 10px 10px 0 0;
 }
 
@@ -83,6 +102,12 @@ h1 {
 
 .dashboard .total:last-child {
   margin-bottom: 0;
+}
+
+.expense-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .expenses-list {
@@ -247,7 +272,8 @@ button:hover {
   color: var(--light-grey);
 }
 
-select#category {
+select#category,
+select#investmentCategory {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -259,7 +285,8 @@ select#category {
   font-size: 1rem;
 }
 
-select#category {
+select#category,
+select#investmentCategory {
   border: 1px solid var(--text-color);
 }
 
@@ -483,7 +510,12 @@ img {
 }
 
 
+
 .expenses-list h3 svg {
+  color: var(--primary-color) !important;
+}
+
+.savings-list svg {
   color: var(--primary-color) !important;
 }
 
@@ -568,6 +600,34 @@ input:checked+.slider:before {
 }
 
 
+.tabs {
+  display: flex;
+  gap: 24px;
+}
+
+.tabs button {
+  padding-inline: 0px;
+  padding-block: 10px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  transition: all ease-in-out .2s;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button:hover {}
+
+.tabs button.active {
+  border-bottom: 2px solid var(--primary-color);
+  border-radius: 0;
+}
+
+
+
+
+
 @media (max-width: 768px) {
 
   .add-expense,
@@ -613,15 +673,11 @@ input:checked+.slider:before {
 }
 
 @media (max-width: 570px) {
-  .menu button:nth-child(2) {
+  .menu button:nth-child(-n+4) {
     display: none;
   }
-
-  .menu button:nth-child(3) {
-    display: none;
-  }
-
 }
+
 
 @media (max-width: 420px) {
   .dialog-content {

@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
-import { ExitToAppOutlined, AccountCircleOutlined, AddCircleOutlineOutlined, TocOutlined } from '@mui/icons-material';
+import React, { useState, useMemo } from 'react';
+import {
+  ExitToAppOutlined,
+  AccountCircleOutlined,
+  AddCircleOutlineOutlined,
+  TocOutlined,
+  EnergySavingsLeafOutlined,
+} from '@mui/icons-material';
 import { useGetExpensesQuery } from '../../api/expenseApi';
 import LoadingIndicator from '../general/LoadingIndicator';
 import ErrorDisplay from '../general/ErrorDisplay';
-import Header from './Header';
 import ExpansesList from '../expense/ExpansesList';
 import FormDialog from '../general/FormDialog';
-import ExpenseForm from '../expense/ExpenseForm';
+import ExpenseForm from '../forms/ExpenseForm';
 import { getGreeting } from '../../utils/generalUtils';
 import { groupExpensesByCategory, sortCategories } from '../../utils/financialUtils';
-import SettingsForm from './SettingsForm';
-import CategoryOrderForm from './CategoryOrderForm';
+import SettingsForm from '../forms/SettingsForm';
+import CategoryOrderForm from '../forms/CategoryOrderForm';
+import SavingsList from '../savings/SavingsList';
+import SavingsForm from '../forms/SavingsForm';
 
 const Dashboard = ({ onLogout, userData }) => {
+  const [openDialog, setOpenDialog] = useState(null);
+  const [activeTab, setActiveTab] = useState('dashboard');
   const { data: expenses = [], error, isLoading } = useGetExpensesQuery(userData?._id);
 
-  const [openDialog, setOpenDialog] = useState(null);
-
-  const greeting = getGreeting(userData.firstName);
+  const greeting = getGreeting(userData?.firstName);
 
   const handleOpenDialog = (dialogName) => {
     setOpenDialog(dialogName);
@@ -34,6 +41,8 @@ const Dashboard = ({ onLogout, userData }) => {
   const categoryExpenses = Object.keys(groupExpensesByCategory(expenses));
   const sortedCategoriesByUserOrder = sortCategories(categoryExpenses, userData?.categoryOrder);
 
+  const groupedExpenses = useMemo(() => groupExpensesByCategory(expenses), [expenses]);
+
   if (isLoading) return <LoadingIndicator />;
   if (error) return <ErrorDisplay errorMessage={error.message} />;
 
@@ -48,6 +57,9 @@ const Dashboard = ({ onLogout, userData }) => {
           <button onClick={() => handleOpenDialog('expense')}>
             <AddCircleOutlineOutlined size="large" />
           </button>
+          <button onClick={() => handleOpenDialog('savings')}>
+            <EnergySavingsLeafOutlined size="large" />
+          </button>
           <button onClick={() => handleOpenDialog('categoryOrder')}>
             <TocOutlined size="large" />
           </button>
@@ -59,9 +71,26 @@ const Dashboard = ({ onLogout, userData }) => {
           </button>
         </div>
       </header>
-      <Header expenses={expenses} totalIncome={userData.income || 0} salaryDay={userData?.salaryDay || null} />
+
+      <div className="tabs">
+        <button className={activeTab === 'dashboard' ? 'active' : ''} onClick={() => setActiveTab('dashboard')}>
+          Månadsbudget
+        </button>
+        <button className={activeTab === 'savings' ? 'active' : ''} onClick={() => setActiveTab('savings')}>
+          Sparande
+        </button>
+      </div>
       <main className="add-expense">
-        <ExpansesList expenses={expenses} categoryOrder={userData?.categoryOrder} />
+        {activeTab === 'dashboard' && (
+          <ExpansesList
+            userData={userData}
+            expenses={expenses}
+            groupedExpenses={groupedExpenses}
+            categoryOrder={userData?.categoryOrder}
+          />
+        )}
+        {activeTab === 'savings' && <SavingsList groupedExpenses={groupedExpenses} savingsDate={userData?.salaryDay} />}
+
         <FormDialog title="Lägg till utgift" isOpen={openDialog === 'expense'} onClose={handleCloseDialog}>
           <ExpenseForm />
         </FormDialog>
@@ -70,6 +99,9 @@ const Dashboard = ({ onLogout, userData }) => {
         </FormDialog>
         <FormDialog title="Användarinställningar" isOpen={openDialog === 'settings'} onClose={handleCloseDialog}>
           <SettingsForm userData={userData} onClose={handleCloseDialog} />
+        </FormDialog>
+        <FormDialog title="Lägg till sparande" isOpen={openDialog === 'savings'} onClose={handleCloseDialog}>
+          <SavingsForm />
         </FormDialog>
       </main>
     </>

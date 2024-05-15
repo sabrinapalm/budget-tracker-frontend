@@ -10,6 +10,7 @@ import {
   CreditScoreOutlined,
   OndemandVideoOutlined,
   PetsOutlined,
+  EnergySavingsLeafOutlined,
 } from '@mui/icons-material';
 
 export const SHARED = 'shared';
@@ -61,7 +62,7 @@ export const categoryTitles = {
   [FOOD]: 'Mat',
   [TRANSPORT]: 'Transport',
   [CLOTHING]: 'Kläder',
-  [LOAN]: 'Lån',
+  [LOAN]: 'Lån & Krediter',
   [STREAMING]: 'Streaming',
   [PETS]: 'Husdjur',
 };
@@ -80,6 +81,7 @@ export const categoryIcons = {
   [LOAN]: (props) => <CreditScoreOutlined {...props} />,
   [STREAMING]: (props) => <OndemandVideoOutlined {...props} />,
   [PETS]: (props) => <PetsOutlined {...props} />,
+  CURRENT_SAVINGS: (props) => <EnergySavingsLeafOutlined {...props} />,
 };
 
 export const THEMES = {

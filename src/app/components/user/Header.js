@@ -14,10 +14,13 @@ const Header = ({ expenses, totalIncome, salaryDay }) => {
 
   return (
     <div className="App-header">
-      <span className="description-text">Efter skatt*</span>
       <div className="dashboard">
         <div className="total">
-          <h3>Månadsinkomst*</h3>
+          <h3>Månadsinkomst (brutto)</h3>
+          <h2>{formatNumber(48720)} SEK</h2>
+        </div>
+        <div className="total">
+          <h3>Månadsinkomst (netto)</h3>
           <h2>{formatNumber(totalIncome)} SEK</h2>
         </div>
         <div className="total">

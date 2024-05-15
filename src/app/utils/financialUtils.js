@@ -4,7 +4,7 @@ export const formatNumber = (number, shareCount) => {
   return new Intl.NumberFormat('sv-SE').format(roundedNumber);
 };
 
-export const calculateTotalAmount = (expenses) => {
+export const calculateTotalAmount = (expenses = []) => {
   const totalAmount = expenses.reduce((total, expense) => {
     if (!expense.hidden) {
       const amountToCount = expense.shareCount ? expense.amount / expense.shareCount : expense.amount;
@@ -43,4 +43,23 @@ export const calculateDaysUntilSalary = (salaryDay) => {
   const dayOfWeek = nextSalaryDate.toLocaleDateString('sv-SE', { weekday: 'long' });
 
   return `${daysUntilSalary} dagar (${dayOfWeek})`;
+};
+
+export const generateMonthlySavings = (savingsDate, total, monthlySaving) => {
+  const today = new Date();
+  const savings = [];
+  let month = today.getMonth();
+  let year = today.getFullYear();
+
+  if (today.getDate() < savingsDate) {
+    savings.push({ month, year, amount: total + monthlySaving });
+  }
+
+  while (month < 11) {
+    month++;
+    const t = total + (savings.length + 1) * monthlySaving;
+    savings.push({ month, year, amount: t });
+  }
+
+  return savings;
 };

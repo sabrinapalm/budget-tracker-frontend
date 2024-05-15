@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { ThemeProvider } from './app/context/ThemeContext';
-import expenseApi from './app/api/expenseApi';
-import authApi from './app/api/authApi';
+import { baseApi } from './app/api/baseApi';
 import authReducer from './app/redux/authSlice';
 import App from './app/App';
 import './index.css';
@@ -16,11 +15,10 @@ import '@fontsource/roboto/700.css';
 
 const store = configureStore({
   reducer: {
-    [expenseApi.reducerPath]: expenseApi.reducer,
-    [authApi.reducerPath]: authApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
     auth: authReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(expenseApi.middleware, authApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

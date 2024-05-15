@@ -1,18 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { USER_TAG, API_URL } from './apiConstants';
+import { USER_TAG } from './constants';
+import { baseApi } from './baseApi';
 
-const authApi = createApi({
-  reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (userData) => ({
@@ -27,18 +16,17 @@ const authApi = createApi({
         method: 'POST',
         body: userData,
       }),
+      invalidatesTags: [USER_TAG],
     }),
     logoutUser: builder.mutation({
       query: () => ({
         url: 'auth/logout',
         method: 'POST',
       }),
+      invalidatesTags: [USER_TAG],
     }),
     getUserData: builder.query({
-      query: () => ({
-        url: 'auth/user',
-        method: 'GET',
-      }),
+      query: () => 'auth/user',
       providesTags: [USER_TAG],
     }),
     updateUserSettings: builder.mutation({
@@ -50,6 +38,7 @@ const authApi = createApi({
       invalidatesTags: [USER_TAG],
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {
