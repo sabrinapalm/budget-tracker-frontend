@@ -18,6 +18,7 @@ import SettingsForm from '../forms/SettingsForm';
 import CategoryOrderForm from '../forms/CategoryOrderForm';
 import SavingsList from '../savings/SavingsList';
 import SavingsForm from '../forms/SavingsForm';
+import { APP_TITLE } from '../../constants';
 
 const Dashboard = ({ onLogout, userData }) => {
   const [openDialog, setOpenDialog] = useState(null);
@@ -50,7 +51,7 @@ const Dashboard = ({ onLogout, userData }) => {
     <>
       <header className="app-header-wrapper">
         <div>
-          <h1>BudgetBrickan</h1>
+          <h1>{APP_TITLE}</h1>
           <h2>{greeting}</h2>
         </div>
         <div className="menu">
@@ -101,7 +102,7 @@ const Dashboard = ({ onLogout, userData }) => {
         </FormDialog>
         <FormDialog
           title="Hantera Kategoriordning"
-          formDescription="Här hanterar du vilken order du vill att din budget bricka ska visas"
+          formDescription="Här hanterar du vilken order du vill att din budgetbricka ska visas"
           isOpen={openDialog === 'categoryOrder'}
           onClose={handleCloseDialog}
         >

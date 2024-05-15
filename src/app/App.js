@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
+import './App.css';
 import { selectAuth } from './redux/selectors';
 import { useGetUserDataQuery } from './api/authApi';
 import { setUserSession } from './redux/authSlice';
@@ -10,6 +10,7 @@ import Dashboard from './components/user/Dashboard';
 import LoadingIndicator from './components/general/LoadingIndicator';
 import FormDialog from './components/general/FormDialog';
 import { useAuth } from './hooks/useAuth';
+import { APP_TITLE } from './constants';
 
 const App = () => {
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
@@ -40,8 +41,8 @@ const App = () => {
       ) : (
         <div className="startpage-form">
           <div>
-            <h1>BudgetBrickan</h1>
-            <p>Effektivisera din budget och se alla dina finansiella utgifter på ett bekvämt ställe.</p>
+            <h1>{APP_TITLE}</h1>
+            <p>Skapa din egen budgetbricka, se alla dina finansiella utgifter på ett bekvämt ställe.</p>
           </div>
           <LoginForm
             onLogin={handleLogin}

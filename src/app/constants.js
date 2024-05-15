@@ -99,3 +99,5 @@ export const THEMES = {
   DARK: 'dark',
   LIGHT: 'light',
 };
+
+export const APP_TITLE = 'budgetbrickan.se';

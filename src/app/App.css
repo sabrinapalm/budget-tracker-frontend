@@ -383,6 +383,7 @@ select#investmentCategory {
 .menu {
   display: flex;
   gap: 8px;
+  margin-top: 8px;
 
   button {
     border: none;
@@ -488,6 +489,10 @@ button:disabled {
 img {
   width: fit-content;
   height: 90px;
+}
+
+.inverted {
+  filter: invert(1);
 }
 
 
@@ -647,6 +652,7 @@ input:checked+.slider:before {
     margin: 0px;
     padding: 0px;
     width: 100%;
+    padding-top: 56px;
   }
 
   .move-category {
