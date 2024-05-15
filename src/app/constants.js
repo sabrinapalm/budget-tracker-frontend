@@ -26,7 +26,13 @@ export const PETS = 'pets';
 export const OTHER = 'other';
 export const FUNDS = 'funds';
 export const PENSION = 'pension';
+
 export const CURRENT_SAVINGS = 'current_savings';
+export const DASHBOARD = 'dashboard';
+
+export const EXPENSE = 'expense';
+export const CATEGORY_ORDER = 'categoryOrder';
+export const SETTINGS = 'settings';
 
 export const categoryOptions = [
   MORTGAGE,
@@ -95,9 +101,16 @@ export const categoryIcons = {
   [CURRENT_SAVINGS]: (props) => <AccountBalanceOutlined {...props} />,
 };
 
+export const menuIcons = {
+  [EXPENSE]: (props) => <PeopleAltOutlined {...props} />,
+  [SAVINGS]: (props) => <LockOutlined {...props} />,
+  [CATEGORY_ORDER]: (props) => <SavingsOutlined {...props} />,
+  [SETTINGS]: (props) => <HomeWorkOutlined {...props} />,
+};
+
 export const THEMES = {
   DARK: 'dark',
   LIGHT: 'light',
 };
 
-export const APP_TITLE = 'budgetbrickan.se';
+export const APP_TITLE = 'BudgetBrickan';

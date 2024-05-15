@@ -18,7 +18,7 @@ import SettingsForm from '../forms/SettingsForm';
 import CategoryOrderForm from '../forms/CategoryOrderForm';
 import SavingsList from '../savings/SavingsList';
 import SavingsForm from '../forms/SavingsForm';
-import { APP_TITLE } from '../../constants';
+import { APP_TITLE, CATEGORY_ORDER, DASHBOARD, EXPENSE, SAVINGS, SETTINGS } from '../../constants';
 
 const Dashboard = ({ onLogout, userData }) => {
   const [openDialog, setOpenDialog] = useState(null);
@@ -55,16 +55,16 @@ const Dashboard = ({ onLogout, userData }) => {
           <h2>{greeting}</h2>
         </div>
         <div className="menu">
-          <button onClick={() => handleOpenDialog('expense')}>
+          <button onClick={() => handleOpenDialog(EXPENSE)}>
             <AddCircleOutlineOutlined size="large" />
           </button>
-          <button onClick={() => handleOpenDialog('savings')}>
+          <button onClick={() => handleOpenDialog(SAVINGS)}>
             <AccountBalanceOutlined size="large" />
           </button>
-          <button onClick={() => handleOpenDialog('categoryOrder')}>
+          <button onClick={() => handleOpenDialog(CATEGORY_ORDER)}>
             <TocOutlined size="large" />
           </button>
-          <button onClick={() => handleOpenDialog('settings')}>
+          <button onClick={() => handleOpenDialog(SETTINGS)}>
             <AccountCircleOutlined size="large" />
           </button>
           <button onClick={onLogout}>
@@ -74,15 +74,15 @@ const Dashboard = ({ onLogout, userData }) => {
       </header>
 
       <div className="tabs">
-        <button className={activeTab === 'dashboard' ? 'active' : ''} onClick={() => setActiveTab('dashboard')}>
+        <button className={activeTab === DASHBOARD ? 'active' : ''} onClick={() => setActiveTab(DASHBOARD)}>
           Månadsbudget
         </button>
-        <button className={activeTab === 'savings' ? 'active' : ''} onClick={() => setActiveTab('savings')}>
+        <button className={activeTab === SAVINGS ? 'active' : ''} onClick={() => setActiveTab(SAVINGS)}>
           Sparande
         </button>
       </div>
       <main className="add-expense">
-        {activeTab === 'dashboard' && (
+        {activeTab === DASHBOARD && (
           <ExpansesList
             userData={userData}
             expenses={expenses}
@@ -90,12 +90,12 @@ const Dashboard = ({ onLogout, userData }) => {
             categoryOrder={userData?.categoryOrder}
           />
         )}
-        {activeTab === 'savings' && <SavingsList groupedExpenses={groupedExpenses} savingsDate={userData?.salaryDay} />}
+        {activeTab === SAVINGS && <SavingsList groupedExpenses={groupedExpenses} savingsDate={userData?.salaryDay} />}
 
         <FormDialog
           title="Lägg till utgift"
           formDescription="Här lägger du till dina utgifter du har per månad"
-          isOpen={openDialog === 'expense'}
+          isOpen={openDialog === EXPENSE}
           onClose={handleCloseDialog}
         >
           <ExpenseForm />
@@ -103,18 +103,18 @@ const Dashboard = ({ onLogout, userData }) => {
         <FormDialog
           title="Hantera Kategoriordning"
           formDescription="Här hanterar du vilken order du vill att din budgetbricka ska visas"
-          isOpen={openDialog === 'categoryOrder'}
+          isOpen={openDialog === CATEGORY_ORDER}
           onClose={handleCloseDialog}
         >
           <CategoryOrderForm options={sortedCategoriesByUserOrder} onSave={handleSaveCategoryOrder} />
         </FormDialog>
-        <FormDialog title="Användarinställningar" isOpen={openDialog === 'settings'} onClose={handleCloseDialog}>
+        <FormDialog title="Användarinställningar" isOpen={openDialog === SETTINGS} onClose={handleCloseDialog}>
           <SettingsForm userData={userData} onClose={handleCloseDialog} />
         </FormDialog>
         <FormDialog
           title="Lägg ditt sparade belopp"
           formDescription="Registrera hur mycket du redan har sparat  i respektive kategori"
-          isOpen={openDialog === 'savings'}
+          isOpen={openDialog === SAVINGS}
           onClose={handleCloseDialog}
         >
           <SavingsForm />

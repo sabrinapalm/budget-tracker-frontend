@@ -10,7 +10,7 @@
 /* Light Mode */
 :root.light {
   --background-color: #f1f1f1;
-  --primary-color: #2cc10c;
+  --primary-color: #fd38ac;
   --text-color: #121E2C;
   --light-grey: rgb(58 58 58);
 }
@@ -661,7 +661,7 @@ input:checked+.slider:before {
 }
 
 @media (max-width: 570px) {
-  .menu button:nth-child(-n+4) {
+  .menu button:nth-child(-n+3) {
     display: none;
   }
 }
