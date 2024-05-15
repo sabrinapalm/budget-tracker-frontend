@@ -17,13 +17,15 @@ export const SHARED = 'shared';
 export const PRIVATE = 'private';
 export const SAVINGS = 'savings';
 export const MORTGAGE = 'mortgage';
-export const OTHER = 'other';
 export const FOOD = 'food';
 export const TRANSPORT = 'transport';
 export const CLOTHING = 'clothing';
 export const LOAN = 'loan';
 export const STREAMING = 'streaming';
 export const PETS = 'pets';
+export const OTHER = 'other';
+export const FUNDS = 'funds';
+export const PENSION = 'pension';
 
 export const categoryOptions = [
   MORTGAGE,
@@ -38,6 +40,8 @@ export const categoryOptions = [
   LOAN,
   PETS,
 ];
+
+export const savingsCategoryOptions = [FUNDS, PENSION, OTHER];
 
 export const categoryDescriptions = {
   [MORTGAGE]: 'Beloppet som visas är dina utgifter för boende',
@@ -65,6 +69,12 @@ export const categoryTitles = {
   [LOAN]: 'Lån & Krediter',
   [STREAMING]: 'Streaming',
   [PETS]: 'Husdjur',
+};
+
+export const savingsCategoryTitles = {
+  [OTHER]: 'Övrigt',
+  [PENSION]: 'Pension',
+  [FUNDS]: 'Fonder',
 };
 
 export const iconStyle = { color: '#48FFB2' };

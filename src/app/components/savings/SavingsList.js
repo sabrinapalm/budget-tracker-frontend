@@ -58,8 +58,7 @@ const SavingsList = ({ groupedExpenses, savingsDate }) => {
           <CategoryIcon category="CURRENT_SAVINGS" />
           <h3>Månadsvis sparande</h3>
           <p className="description-text">
-            Fortsätt spara {formatNumber(monthlySaving)} SEK varje månad och se hur ditt sparande växer! Vid årets slut
-            kommer du ha samlat ihop en imponerande summa, som visas månad för månad nedan.
+            Fortsätt spara {formatNumber(monthlySaving)} SEK varje månad och se hur ditt sparande växer!
           </p>
 
           <ul>

@@ -615,6 +615,7 @@ input:checked+.slider:before {
   cursor: pointer;
   transition: all ease-in-out .2s;
   border-bottom: 2px solid transparent;
+  text-transform: capitalize;
 }
 
 .tabs button:hover {}

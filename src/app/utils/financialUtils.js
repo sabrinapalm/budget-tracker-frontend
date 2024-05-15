@@ -55,11 +55,18 @@ export const generateMonthlySavings = (savingsDate, total, monthlySaving) => {
     savings.push({ month, year, amount: total + monthlySaving });
   }
 
-  while (month < 11) {
-    month++;
-    const t = total + (savings.length + 1) * monthlySaving;
-    savings.push({ month, year, amount: t });
-  }
+  const addMonthlySavings = (startMonth, startYear) => {
+    for (let i = startMonth; i < 12; i++) {
+      const t = total + (savings.length + 1) * monthlySaving;
+      savings.push({ month: i, year: startYear, amount: t });
+    }
+  };
+
+  // Add savings for the current year
+  addMonthlySavings(today.getDate() < savingsDate ? month + 1 : month, year);
+
+  // Add savings for the next year
+  addMonthlySavings(0, year + 1);
 
   return savings;
 };

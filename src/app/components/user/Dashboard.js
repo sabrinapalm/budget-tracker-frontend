@@ -91,16 +91,31 @@ const Dashboard = ({ onLogout, userData }) => {
         )}
         {activeTab === 'savings' && <SavingsList groupedExpenses={groupedExpenses} savingsDate={userData?.salaryDay} />}
 
-        <FormDialog title="Lägg till utgift" isOpen={openDialog === 'expense'} onClose={handleCloseDialog}>
+        <FormDialog
+          title="Lägg till utgift"
+          formDescription="Här lägger du till dina utgifter du har per månad"
+          isOpen={openDialog === 'expense'}
+          onClose={handleCloseDialog}
+        >
           <ExpenseForm />
         </FormDialog>
-        <FormDialog title="Hantera Kategoriordning" isOpen={openDialog === 'categoryOrder'} onClose={handleCloseDialog}>
+        <FormDialog
+          title="Hantera Kategoriordning"
+          formDescription="Här hanterar du vilken order du vill att din budget bricka ska visas"
+          isOpen={openDialog === 'categoryOrder'}
+          onClose={handleCloseDialog}
+        >
           <CategoryOrderForm options={sortedCategoriesByUserOrder} onSave={handleSaveCategoryOrder} />
         </FormDialog>
         <FormDialog title="Användarinställningar" isOpen={openDialog === 'settings'} onClose={handleCloseDialog}>
           <SettingsForm userData={userData} onClose={handleCloseDialog} />
         </FormDialog>
-        <FormDialog title="Lägg till sparande" isOpen={openDialog === 'savings'} onClose={handleCloseDialog}>
+        <FormDialog
+          title="Lägg ditt sparade belopp"
+          formDescription="Registrera hur mycket du redan har sparat  i respektive kategori"
+          isOpen={openDialog === 'savings'}
+          onClose={handleCloseDialog}
+        >
           <SavingsForm />
         </FormDialog>
       </main>

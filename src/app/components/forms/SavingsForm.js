@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAddSavingsMutation } from '../../api/savingsApi';
 import { selectUserId } from '../../redux/selectors';
+import { savingsCategoryOptions, savingsCategoryTitles } from '../../constants';
 
 const SavingsForm = () => {
   const [investmentCategory, setInvestmentCategory] = useState('');
@@ -50,9 +51,11 @@ const SavingsForm = () => {
           <option value="" disabled>
             Välj en kategori
           </option>
-          <option value="funds">Funds</option>
-          <option value="pension">Pension</option>
-          <option value="other">Other</option>
+          {savingsCategoryOptions.map((category) => (
+            <option key={category} value={category}>
+              {savingsCategoryTitles[category]}
+            </option>
+          ))}
         </select>
       </div>
       <div>
