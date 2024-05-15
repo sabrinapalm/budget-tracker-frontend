@@ -41,27 +41,8 @@ menu {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  scrollbar-width: none;
 }
 
-.App {
-  height: 93vh;
-  overflow-y: scroll;
-  /* Add the ability to scroll */
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.App::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.App {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
 
 .App-header {
   background-color: var(--background-color);
