@@ -62,11 +62,18 @@ export const generateMonthlySavings = (savingsDate, total, monthlySaving) => {
     }
   };
 
-  // Add savings for the current year
   addMonthlySavings(today.getDate() < savingsDate ? month + 1 : month, year);
-
-  // Add savings for the next year
   addMonthlySavings(0, year + 1);
 
   return savings;
+};
+
+export const groupByYear = (monthlySavings) => {
+  return monthlySavings.reduce((acc, entry) => {
+    if (!acc[entry.year]) {
+      acc[entry.year] = [];
+    }
+    acc[entry.year].push(entry);
+    return acc;
+  }, {});
 };

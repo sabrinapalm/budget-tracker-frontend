@@ -12,8 +12,9 @@ import FormDialog from './components/general/FormDialog';
 import { useAuth } from './hooks/useAuth';
 
 const App = () => {
-  const dispatch = useDispatch();
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+
+  const dispatch = useDispatch();
   const { isLoggedIn, loginError } = useSelector(selectAuth);
   const { handleLogin, handleLogout, isLoginLoading, isLogoutLoading } = useAuth();
   const token = localStorage.getItem('token');

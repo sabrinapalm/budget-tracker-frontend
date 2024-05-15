@@ -4,7 +4,7 @@ import {
   AccountCircleOutlined,
   AddCircleOutlineOutlined,
   TocOutlined,
-  EnergySavingsLeafOutlined,
+  AccountBalanceOutlined,
 } from '@mui/icons-material';
 import { useGetExpensesQuery } from '../../api/expenseApi';
 import LoadingIndicator from '../general/LoadingIndicator';
@@ -58,7 +58,7 @@ const Dashboard = ({ onLogout, userData }) => {
             <AddCircleOutlineOutlined size="large" />
           </button>
           <button onClick={() => handleOpenDialog('savings')}>
-            <EnergySavingsLeafOutlined size="large" />
+            <AccountBalanceOutlined size="large" />
           </button>
           <button onClick={() => handleOpenDialog('categoryOrder')}>
             <TocOutlined size="large" />

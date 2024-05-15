@@ -10,7 +10,7 @@ import {
   CreditScoreOutlined,
   OndemandVideoOutlined,
   PetsOutlined,
-  EnergySavingsLeafOutlined,
+  AccountBalanceOutlined,
 } from '@mui/icons-material';
 
 export const SHARED = 'shared';
@@ -26,6 +26,7 @@ export const PETS = 'pets';
 export const OTHER = 'other';
 export const FUNDS = 'funds';
 export const PENSION = 'pension';
+export const CURRENT_SAVINGS = 'current_savings';
 
 export const categoryOptions = [
   MORTGAGE,
@@ -91,7 +92,7 @@ export const categoryIcons = {
   [LOAN]: (props) => <CreditScoreOutlined {...props} />,
   [STREAMING]: (props) => <OndemandVideoOutlined {...props} />,
   [PETS]: (props) => <PetsOutlined {...props} />,
-  CURRENT_SAVINGS: (props) => <EnergySavingsLeafOutlined {...props} />,
+  [CURRENT_SAVINGS]: (props) => <AccountBalanceOutlined {...props} />,
 };
 
 export const THEMES = {

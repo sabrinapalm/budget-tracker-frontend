@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatNumber } from '../../utils/financialUtils';
-import { SAVINGS } from '../../constants';
-import { calculateTotalAmount, generateMonthlySavings } from '../../utils/financialUtils';
+import { CURRENT_SAVINGS, SAVINGS } from '../../constants';
+import { calculateTotalAmount, generateMonthlySavings, groupByYear } from '../../utils/financialUtils';
 import { useGetSavingsQuery } from '../../api/savingsApi';
 import CategoryIcon from '../expense/CategoryIcon';
 import { useSelector } from 'react-redux';
@@ -20,6 +20,7 @@ const SavingsList = ({ groupedExpenses, savingsDate }) => {
   const total = pension + funds + other;
 
   const monthlySavings = generateMonthlySavings(savingsDate, total, monthlySaving);
+  const groupedByYear = groupByYear(monthlySavings);
 
   if (isFetching || isLoading) {
     return <LoadingIndicator />;
@@ -55,22 +56,27 @@ const SavingsList = ({ groupedExpenses, savingsDate }) => {
         </div>
 
         <div className="savings-list">
-          <CategoryIcon category="CURRENT_SAVINGS" />
+          <CategoryIcon category={CURRENT_SAVINGS} />
           <h3>Månadsvis sparande</h3>
           <p className="description-text">
             Fortsätt spara {formatNumber(monthlySaving)} SEK varje månad och se hur ditt sparande växer!
           </p>
 
-          <ul>
-            {monthlySavings.map((entry, index) => (
-              <li key={index}>
-                <p className="expense-title">
-                  {new Date(entry.year, entry.month).toLocaleString('sv-SE', { month: 'long', year: 'numeric' })}
-                </p>
-                <p className="expense-amount">{formatNumber(entry.amount)} SEK</p>
-              </li>
-            ))}
-          </ul>
+          {Object.entries(groupedByYear).map(([year, entries]) => (
+            <div key={year}>
+              <ul>
+                <h3>{year}</h3>
+                {entries.map((entry, index) => (
+                  <li key={index}>
+                    <p className="expense-title">
+                      {new Date(entry.year, entry.month).toLocaleString('sv-SE', { month: 'long', year: 'numeric' })}
+                    </p>
+                    <p className="expense-amount">{formatNumber(entry.amount)} SEK</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>
