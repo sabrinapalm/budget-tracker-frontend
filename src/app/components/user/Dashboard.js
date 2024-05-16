@@ -144,7 +144,7 @@ const Dashboard = ({ onLogout, userData }) => {
         </FormDialog>
         <FormDialog
           title="Lägg ditt sparade belopp"
-          formDescription="Registrera hur mycket du redan har sparat  i respektive kategori"
+          formDescription="Registrera hur mycket du har sparat idag i respektive kategori"
           isOpen={openDialog === SAVINGS}
           onClose={handleCloseDialog}
         >

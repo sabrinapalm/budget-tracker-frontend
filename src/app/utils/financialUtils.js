@@ -50,25 +50,19 @@ export const generateMonthlySavings = (savingsDate, total, monthlySaving) => {
   const savings = [];
   let month = today.getMonth();
   let year = today.getFullYear();
-  let savingsCount = 0;
+  const currentDay = today.getDate();
 
-  const addMonthlySavings = (startMonth, startYear) => {
-    for (let i = 0; i < 12; i++) {
-      if (savingsCount >= 12) break;
+  if (currentDay < savingsDate) {
+    const t = total + monthlySaving;
+    savings.push({ month, year, amount: t });
+    month++;
+  }
 
-      if (startMonth >= 12) {
-        startMonth = 0;
-        startYear++;
-      }
-
-      const t = total + (savings.length + 1) * monthlySaving;
-      savings.push({ month: startMonth, year: startYear, amount: t });
-      startMonth++;
-      savingsCount++;
-    }
-  };
-
-  addMonthlySavings(today.getDate() < savingsDate ? month : month + 1, year);
+  while (month < 12) {
+    const t = total + (savings.length + 1) * monthlySaving;
+    savings.push({ month, year, amount: t });
+    month++;
+  }
 
   return savings;
 };
@@ -81,4 +75,16 @@ export const groupByYear = (monthlySavings) => {
     acc[entry.year].push(entry);
     return acc;
   }, {});
+};
+
+export const getSortedInvestments = (investmentCategories, investments) => {
+  return investmentCategories
+    .filter(({ key }) => investments?.[key]?.amount > 0)
+    .sort((a, b) => investments[b.key].amount - investments[a.key].amount);
+};
+
+export const getSortedSavingsInvestments = (investments) => {
+  return Object.values(investments)
+    .filter((investment) => investment.amount > 0)
+    .sort((a, b) => b.amount - a.amount);
 };

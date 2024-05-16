@@ -15,7 +15,7 @@ const useSavingsData = (userId, groupedExpenses, savingsDate) => {
   const monthlySavings = generateMonthlySavings(savingsDate, total, monthlySaving);
   const groupedByYear = groupByYear(monthlySavings);
 
-  return { savings, isLoading, isFetching, isError, error, monthlySaving, total, investments, groupedByYear };
+  return { isLoading, isFetching, isError, error, monthlySaving, total, investments, groupedByYear };
 };
 
 export default useSavingsData;
