@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useAddSavingsMutation } from '../../api/savingsApi';
 import { selectUserId } from '../../redux/selectors';
 import { savingsCategoryOptions, savingsCategoryTitles } from '../../constants';
 
-const SavingsForm = () => {
+const SavingsForm = ({ investment, onClose }) => {
   const [investmentCategory, setInvestmentCategory] = useState('');
   const [investmentAmount, setInvestmentAmount] = useState('');
 
@@ -33,10 +33,20 @@ const SavingsForm = () => {
       console.log('Savings added successfully:', result);
       setInvestmentCategory('');
       setInvestmentAmount('');
+      if (onClose) {
+        onClose();
+      }
     } catch (error) {
       console.error('Error adding savings:', error);
     }
   };
+
+  useEffect(() => {
+    if (investment) {
+      setInvestmentCategory(investment.category);
+      setInvestmentAmount(investment.amount);
+    }
+  }, [investment]);
 
   return (
     <form className="form" onSubmit={handleAddSavings}>

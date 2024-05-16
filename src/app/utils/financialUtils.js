@@ -50,20 +50,25 @@ export const generateMonthlySavings = (savingsDate, total, monthlySaving) => {
   const savings = [];
   let month = today.getMonth();
   let year = today.getFullYear();
-
-  if (today.getDate() < savingsDate) {
-    savings.push({ month, year, amount: total + monthlySaving });
-  }
+  let savingsCount = 0;
 
   const addMonthlySavings = (startMonth, startYear) => {
-    for (let i = startMonth; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
+      if (savingsCount >= 12) break;
+
+      if (startMonth >= 12) {
+        startMonth = 0;
+        startYear++;
+      }
+
       const t = total + (savings.length + 1) * monthlySaving;
-      savings.push({ month: i, year: startYear, amount: t });
+      savings.push({ month: startMonth, year: startYear, amount: t });
+      startMonth++;
+      savingsCount++;
     }
   };
 
-  addMonthlySavings(today.getDate() < savingsDate ? month + 1 : month, year);
-  addMonthlySavings(0, year + 1);
+  addMonthlySavings(today.getDate() < savingsDate ? month : month + 1, year);
 
   return savings;
 };

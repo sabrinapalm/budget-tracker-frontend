@@ -15,9 +15,16 @@ const savingsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [SAVINGS_TAG],
     }),
+    deleteInvestment: builder.mutation({
+      query: ({ userId, category }) => ({
+        url: `savings/${userId}/${category}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [SAVINGS_TAG],
+    }),
   }),
 });
 
-export const { useGetSavingsQuery, useAddSavingsMutation } = savingsApi;
+export const { useGetSavingsQuery, useAddSavingsMutation, useDeleteInvestmentMutation } = savingsApi;
 
 export default savingsApi;

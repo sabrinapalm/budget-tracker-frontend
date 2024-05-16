@@ -10,6 +10,7 @@ import {
   CreditScoreOutlined,
   OndemandVideoOutlined,
   PetsOutlined,
+  CalendarMonthOutlined,
   AccountBalanceOutlined,
 } from '@mui/icons-material';
 
@@ -26,8 +27,10 @@ export const PETS = 'pets';
 export const OTHER = 'other';
 export const FUNDS = 'funds';
 export const PENSION = 'pension';
+export const BUFFER = 'buffer';
 
 export const CURRENT_SAVINGS = 'current_savings';
+export const FUTURE_SAVINGS = 'future_savings';
 export const DASHBOARD = 'dashboard';
 
 export const EXPENSE = 'expense';
@@ -48,7 +51,7 @@ export const categoryOptions = [
   PETS,
 ];
 
-export const savingsCategoryOptions = [FUNDS, PENSION, OTHER];
+export const savingsCategoryOptions = [FUNDS, BUFFER, PENSION, OTHER];
 
 export const categoryDescriptions = {
   [MORTGAGE]: 'Beloppet som visas är dina utgifter för boende',
@@ -82,6 +85,7 @@ export const savingsCategoryTitles = {
   [OTHER]: 'Övrigt',
   [PENSION]: 'Pension',
   [FUNDS]: 'Fonder',
+  [BUFFER]: 'Buffert',
 };
 
 export const iconStyle = { color: '#48FFB2' };
@@ -99,6 +103,7 @@ export const categoryIcons = {
   [STREAMING]: (props) => <OndemandVideoOutlined {...props} />,
   [PETS]: (props) => <PetsOutlined {...props} />,
   [CURRENT_SAVINGS]: (props) => <AccountBalanceOutlined {...props} />,
+  [FUTURE_SAVINGS]: (props) => <CalendarMonthOutlined {...props} />,
 };
 
 export const menuIcons = {
@@ -122,3 +127,10 @@ export const APP_COLORS = {
   PINK: '#fd38ac',
   YELLOW: '#FFD700',
 };
+
+export const investmentCategories = [
+  { key: 'buffer', title: 'Buffert' },
+  { key: 'other', title: 'Övrigt' },
+  { key: 'funds', title: 'Fonder' },
+  { key: 'pension', title: 'Pension' },
+];
