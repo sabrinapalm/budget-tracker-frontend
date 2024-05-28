@@ -39,6 +39,15 @@ export const calculateDaysUntilSalary = (salaryDay) => {
   const currentYear = currentDate.getFullYear();
 
   let nextSalaryDate = new Date(currentYear, currentMonth, salaryDay);
+
+  if (nextSalaryDate <= currentDate) {
+    nextSalaryDate = new Date(currentYear, currentMonth + 1, salaryDay);
+
+    if (currentMonth === 11) {
+      nextSalaryDate = new Date(currentYear + 1, 0, salaryDay);
+    }
+  }
+
   const daysUntilSalary = Math.ceil((nextSalaryDate - currentDate) / (1000 * 60 * 60 * 24));
   const dayOfWeek = nextSalaryDate.toLocaleDateString('sv-SE', { weekday: 'long' });
 
