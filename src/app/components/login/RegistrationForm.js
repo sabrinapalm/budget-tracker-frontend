@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRegisterUserMutation } from '../../api/authApi';
-// import { passwordCriteria } from '../../utils/generalUtils';
+import Mailcheck from 'mailcheck';
 
 const RegistrationForm = ({ onRegisterSuccess }) => {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
     confirmPassword: '',
   });
   const [passwordError, setPasswordError] = useState('');
-  // const [passwordValidation, setPasswordValidation] = useState(passwordCriteria.map(() => false));
+  const [emailSuggestion, setEmailSuggestion] = useState('');
   const [registerUser, { isLoading, error }] = useRegisterUserMutation();
 
   const handleSubmit = async (e) => {
@@ -47,10 +47,17 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
 
-    // if (name === 'password') {
-    //   const validationResults = passwordCriteria.map((criterion) => criterion.test(value));
-    //   setPasswordValidation(validationResults);
-    // }
+    if (name === 'email') {
+      Mailcheck.run({
+        email: value,
+        suggested: (suggestion) => {
+          setEmailSuggestion(suggestion.full);
+        },
+        empty: () => {
+          setEmailSuggestion('');
+        },
+      });
+    }
   };
 
   return (
@@ -82,6 +89,14 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
             required
             autoComplete="username"
           />
+          {emailSuggestion && (
+            <div className="description-text">
+              <span type="button" onClick={() => setFormData({ ...formData, email: emailSuggestion })}>
+                Did you mean {emailSuggestion}
+              </span>
+              ?
+            </div>
+          )}
         </div>
         <div>
           <label htmlFor="password">Nytt lösenord</label>
@@ -108,13 +123,6 @@ const RegistrationForm = ({ onRegisterSuccess }) => {
           />
         </div>
         {passwordError && <div className="description-text">{passwordError}</div>}
-
-        {/* {passwordCriteria.map((criterion, index) => (
-          <div key={index} className={passwordValidation[index] ? 'success' : 'error'}>
-            {passwordValidation[index] ? '\u2713' : ''} {criterion.message}
-          </div>
-        ))} */}
-
         <button type="submit" disabled={isLoading}>
           Skapa konto
         </button>
