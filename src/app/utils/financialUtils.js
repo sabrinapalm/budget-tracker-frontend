@@ -61,10 +61,12 @@ export const generateMonthlySavings = (savingsDate, total, monthlySaving) => {
   let year = today.getFullYear();
   const currentDay = today.getDate();
 
-  if (currentDay < savingsDate) {
-    const t = total + monthlySaving;
-    savings.push({ month, year, amount: t });
+  if (currentDay >= savingsDate) {
     month++;
+    if (month > 11) {
+      month = 0;
+      year++;
+    }
   }
 
   while (month < 12) {
