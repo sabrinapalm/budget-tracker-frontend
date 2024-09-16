@@ -45,7 +45,7 @@ const SavingsList = ({ groupedExpenses, savingsDate }) => {
           {monthlySaving > 0 && (
             <div className="savings-list">
               <CategoryIcon category={FUTURE_SAVINGS} />
-              <h3>Månadsvis sparande</h3>
+              <h3>Månadsvis sparande (12 mån)</h3>
               <p className="description-text">
                 Fortsätt spara {formatNumber(monthlySaving)} SEK varje månad och se hur ditt sparande växer
               </p>
