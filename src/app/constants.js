@@ -68,7 +68,7 @@ export const categoryDescriptions = {
   [LOAN]: 'Beloppet som visas är dina lån och krediter',
   [STREAMING]: 'Beloppet som visas är dina utgifter för streamingtjänster',
   [PETS]: 'Beloppet som visas är dina utgifter för husdjur',
-  [OPERATING_COST]: 'Belopper som visas är för dina driftkostnader',
+  [OPERATING_COST]: 'Beloppet som visas är för dina driftkostnader',
 };
 
 export const categoryTitles = {
