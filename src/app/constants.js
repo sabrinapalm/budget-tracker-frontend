@@ -12,6 +12,7 @@ import {
   PetsOutlined,
   CalendarMonthOutlined,
   AccountBalanceOutlined,
+  BuildCircleOutlined,
 } from '@mui/icons-material';
 
 export const SHARED = 'shared';
@@ -28,6 +29,7 @@ export const OTHER = 'other';
 export const FUNDS = 'funds';
 export const PENSION = 'pension';
 export const BUFFER = 'buffer';
+export const OPERATING_COST = 'operating';
 
 export const CURRENT_SAVINGS = 'current_savings';
 export const FUTURE_SAVINGS = 'future_savings';
@@ -49,6 +51,7 @@ export const categoryOptions = [
   OTHER,
   LOAN,
   PETS,
+  OPERATING_COST,
 ];
 
 export const savingsCategoryOptions = [FUNDS, BUFFER, PENSION, OTHER];
@@ -65,6 +68,7 @@ export const categoryDescriptions = {
   [LOAN]: 'Beloppet som visas är dina lån och krediter',
   [STREAMING]: 'Beloppet som visas är dina utgifter för streamingtjänster',
   [PETS]: 'Beloppet som visas är dina utgifter för husdjur',
+  [OPERATING_COST]: 'Belopper som visas är för dina driftkostnader',
 };
 
 export const categoryTitles = {
@@ -79,6 +83,7 @@ export const categoryTitles = {
   [LOAN]: 'Lån & Krediter',
   [STREAMING]: 'Streaming',
   [PETS]: 'Husdjur',
+  [OPERATING_COST]: 'Driftkostnader',
 };
 
 export const savingsCategoryTitles = {
@@ -104,6 +109,7 @@ export const categoryIcons = {
   [PETS]: (props) => <PetsOutlined {...props} />,
   [CURRENT_SAVINGS]: (props) => <AccountBalanceOutlined {...props} />,
   [FUTURE_SAVINGS]: (props) => <CalendarMonthOutlined {...props} />,
+  [OPERATING_COST]: (props) => <BuildCircleOutlined {...props} />,
 };
 
 export const menuIcons = {
